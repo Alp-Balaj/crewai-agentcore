@@ -1,0 +1,33 @@
+analyze_posting:
+  description: >
+    Analyse this job posting.
+
+    <posting>
+    {posting}
+    </posting>
+
+    Produce: (1) the role in one sentence, (2) must-have skills, (3) nice-to-have
+    skills, (4) implied expectations that are not written down, and (5) the three
+    topics most likely to come up in a technical interview.
+  expected_output: >
+    A Markdown report with the five numbered sections above, using short bullet points.
+  agent: requirements_analyst
+
+plan_study:
+  description: >
+    Using the requirements analysis from the previous task, compare it with this
+    candidate profile.
+
+    <profile>
+    {profile}
+    </profile>
+
+    The candidate has {days} days to prepare. Write a gap analysis (strengths,
+    gaps ranked by interview risk) and a day-by-day plan where each day names
+    one concrete thing to build or practise and how to know it is done.
+  expected_output: >
+    A Markdown document with sections "Fit summary", "Strengths", "Gaps" and
+    "Plan", where the plan has exactly {days} numbered days.
+  agent: career_coach
+  context:
+    - analyze_posting

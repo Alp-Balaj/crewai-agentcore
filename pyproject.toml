@@ -1,0 +1,31 @@
+[project]
+name = "crewai-agentcore"
+version = "0.1.0"
+description = "CrewAI crew (job posting analyst + career coach) on Claude, deployable to Amazon Bedrock AgentCore Runtime"
+readme = "README.md"
+authors = [
+    { name = "Alp Balaj", email = "alpbalaj1203@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "bedrock-agentcore>=1.25.4",
+    "crewai[anthropic]>=1.15.37",
+]
+
+[project.scripts]
+jobfit = "crewai_agentcore.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "bedrock-agentcore-starter-toolkit>=0.3.14",
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning:crewai.*"]
